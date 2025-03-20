@@ -148,6 +148,17 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'userauth.User'
 
+MAILGUN_API_KEY = env("MAILGUN_API_KEY")
+MAILGUN_SENDER_DOMAIN = env("MAILGUN_SENDER_DOMAIN")
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN"),
+}
+
+FROM_EMAIL = env("FROM_EMAIL")
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
