@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 from django.utils.text import slugify
@@ -67,3 +68,36 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
+class Gallery(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='products', default='product.jpg')
+    active = models.BooleanField(default=True)
+    gid = ShortUUIDField(unique=True, length=10, alphabet='abcdefg12345')
+
+    def __str__(self):
+        return self.product.title
+    
+
+class Specification(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    title = models.CharField(max_length=1000)
+    content = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.product.title
+    
+class Size(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=1000)
+    price = models.DecimalField(decimal_places=2, max_digits=12, default=0.00)
+
+    def __str__(self):
+        return self.name
+    
+class Color(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=1000)
+    color_code = models.CharField(max_length=1000)
+    
+    def __str__(self):
+        return self.name
