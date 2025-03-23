@@ -9,7 +9,7 @@ from userauth.views import (
     UserProfileView
 )
 
-app_name = 'userauths'
+app_name = 'userauth'
 
 urlpatterns = [
     # Authentication endpoints
