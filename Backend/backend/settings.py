@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'shortuuid',
     #'django_ckeditor_5',
-    #'import_export',
+    'import_export',
 ]
 
 MIDDLEWARE = [

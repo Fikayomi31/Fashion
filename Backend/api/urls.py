@@ -8,8 +8,9 @@ from userauth.views import (
     PasswordChangeView,
     UserProfileView
 )
+from store import views as store_view
 
-app_name = 'userauth'
+
 
 urlpatterns = [
     # Authentication endpoints
@@ -23,4 +24,8 @@ urlpatterns = [
     
     # User profile management
     path('profile/', UserProfileView.as_view(), name='user_profile'),
+
+    # Store Endpoint
+    path('category', store_view.CategoryListAPIView.as_view()),
+    path('products', store_view.ProductListAPIView.as_view()),
 ]
